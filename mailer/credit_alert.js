@@ -21,17 +21,16 @@ let transporter = nodemailer.createTransport({
   secure: false,
 
   auth: {
-    user: "zionintercontinentalbank@gmail.com",
-    // pass: "desolidboy1",
-    pass: "bjsejdrvqigifpgm",
-    // secure:false,
+    user: "zionintercontinentalbank058@gmail.com",
+  
+    pass: "esioxniayjfncell",
   },
 });
 
 
 let credit_create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@zionintercontinentalb.com",
+    from: "support@zionintercontinentalbnk.com",
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever_mail,
     subject: `CREDIT ALERT`,
