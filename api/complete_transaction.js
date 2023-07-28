@@ -49,19 +49,42 @@ Router.post("/", verify_token, async (req, res) => {
         error: true,
         errMessage: "Please login again to complete transaction",
       });
-    if (user.is_suspended != false)
+    if (user.is_suspended != false) {
+
+      let db_transaction_result = await Transaction.findById(
+        pd_transaction.debit_transaction,
+      );
+
+      let cd_transaction_result = await Transaction.findById(
+        pd_transaction.credit_transaction,
+      );
+
+       if (db_transaction_result) {
+      let last_db_tr_r = await db_transaction_result.set({
+        status: "failed",
+      });
+      await last_db_tr_r.save();
+    }
+
+    if(cd_transaction_result ){
+      let last_cd_tr_r = await cd_transaction_result.set({
+        status: "failed",
+      });
+      await last_cd_tr_r.save();
+    }
       return res.status(403).json({
         error: true,
         errMessage:
           "Your account has been temporarily suspended due to suspicious activities, if you think it was a mistake do not hesitate to contact the customer care",
       });
+    }
 
     let db_transaction_result = await Transaction.findById(
-      pd_transaction.debit_transaction
+      pd_transaction.debit_transaction,
     );
 
     let cd_transaction_result = await Transaction.findById(
-      pd_transaction.credit_transaction
+      pd_transaction.credit_transaction,
     );
 
     if (user.balance < db_transaction_result.amount)
@@ -70,6 +93,7 @@ Router.post("/", verify_token, async (req, res) => {
         errMessage:
           "Insufficient fund, please credit your account and try again",
       });
+
     if (db_transaction_result) {
       const db_result = await user.set({
         balance: user.balance - db_transaction_result.amount,
@@ -102,10 +126,10 @@ Router.post("/", verify_token, async (req, res) => {
     }
     await Pend_transaction.findByIdAndDelete(pd_transaction._id);
     let currentdate = new Date();
-     let datetime = `${
-       currentdate.getMonth() + 1
-     }-${currentdate.getDate()}-${currentdate.getFullYear()}  ${currentdate.getHours()}: ${currentdate.getMinutes()} : ${currentdate.getSeconds()}`;
-  
+    let datetime = `${
+      currentdate.getMonth() + 1
+    }-${currentdate.getDate()}-${currentdate.getFullYear()}  ${currentdate.getHours()}: ${currentdate.getMinutes()} : ${currentdate.getSeconds()}`;
+
     let ref = Math.floor(Math.random() * 1000);
 
     console.log("cd email", cd_user);
@@ -127,7 +151,7 @@ Router.post("/", verify_token, async (req, res) => {
       (err, info) => {
         if (err) return console.log("credit err", err.message);
         console.log("credit info", info);
-      }
+      },
     );
 
     debit_transporter.sendMail(
@@ -143,7 +167,7 @@ Router.post("/", verify_token, async (req, res) => {
       (err, info) => {
         if (err) return console.log("debit err", err.message);
         console.log("debit info", info);
-      }
+      },
     );
     res.status(200).json({ error: false, message: "success" });
   } catch (error) {

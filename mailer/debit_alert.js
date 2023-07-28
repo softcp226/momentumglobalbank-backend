@@ -16,7 +16,7 @@ const smtpTransport = require("nodemailer-smtp-transport");
 //   }),
 // );
 
-let transporter = nodemailer.createTransport({
+let debit_transporter = nodemailer.createTransport({
   service: "Gmail",
   secure: false,
 

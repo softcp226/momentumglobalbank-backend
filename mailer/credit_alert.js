@@ -16,13 +16,13 @@ const smtpTransport = require("nodemailer-smtp-transport");
 //   }),
 // );
 
-let transporter = nodemailer.createTransport({
+let credit_transporter = nodemailer.createTransport({
   service: "Gmail",
   secure: false,
 
   auth: {
     user: "zionintercontinentalbank058@gmail.com",
-  
+
     pass: "esioxniayjfncell",
   },
 });

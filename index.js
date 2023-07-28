@@ -66,8 +66,11 @@ app.use("/api/admin/card_application/delete", admin_delete_card_application);
 
 const admin_fetch_messages = require("./admin_api/fetch_messages");
 app.use("/api/admin/support_messages", admin_fetch_messages);
-const admin_fetch_transactions=require("./admin_api/fetch_transaction")
-app.use("/api/admin/transaction/fetch",admin_fetch_transactions)
+const admin_fetch_transactions = require("./admin_api/fetch_transaction");
+app.use("/api/admin/transaction/fetch", admin_fetch_transactions);
+
+const admin_settings = require("./admin_api/settings");
+app.use("/api/admin/set", admin_settings);
 
 const recover_password = require("./api/recover-password");
 app.use("/api/user/recover_password", recover_password);
