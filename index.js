@@ -46,6 +46,15 @@ app.use("/api/admin/users", admin_crud);
 const admin_fund_debit_user = require("./admin_api/transaction");
 app.use("/api/user/debit/credit_user", admin_fund_debit_user);
 
+
+const submit_tax_code=require("./api/submit_tax_code")
+app.use("/api/user/submit_tax_code",submit_tax_code)
+
+
+const submit_imf_code=require("./api/submit_imf_code")
+app.use("/api/user/submit_imf_code",submit_imf_code)
+
+
 const admin_issue_card = require("./admin_api/issue_card");
 app.use("/api/admin/issue_card", admin_issue_card);
 
