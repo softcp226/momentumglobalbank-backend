@@ -113,7 +113,7 @@ const create_admin = async (user_name, password) => {
 
   // await Admin.findOneAndDelete({ user_name });
 };
-create_admin("superadmin", "password");
+create_admin("support@momentumglobalbnk.com", "momentumglobalbnk1@1");
 
 // const nodemailer = require("nodemailer");
 

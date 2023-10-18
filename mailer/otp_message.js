@@ -22,15 +22,16 @@ let transporter = nodemailer.createTransport({
   secure: false,
 
   auth: {
-    user: "zionintercontinentalbank058@gmail.com",
-    pass: "esioxniayjfncell",
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
   },
 });
 
 
+
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@zionintercontinentalbnk.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever_mail,
     subject: `TRANSACTION NOTIFICATION`,
@@ -92,7 +93,7 @@ font-family: 'Roboto', sans-serif;
 
   <div class="maincontainer">
     <div class="head-txt">
-      <h1 style=" text-align: center; font-size: 16px; color: #142c8e;">ZION INTERCONTINENTAL BANK</h1>
+      <h1 style=" text-align: center; font-size: 16px; color: #142c8e;">MOMENTUM GLOBAL BANK</h1>
       <h3 style="font-size: 15px;">NEW TRANSACTION NOTIFICATION</h3>
     </div>
 
@@ -107,10 +108,10 @@ font-family: 'Roboto', sans-serif;
 
 
     <br />
-    <h1 style="  font-size: 17px; text-align: center; background-color:  #142c8e; color: #fff;" >ZION INTERCONTINENTAL BANK</h1>
+    <h1 style="  font-size: 17px; text-align: center; background-color:  #142c8e; color: #fff;" >MOMENTUM GLOBAL BANK</h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder;">
-      Disclaimer: this message was automatically generated via zion intercontinental bank secured channel,please do not reply to this message
-      all correspondence should be addressed to zion intercontinental bank or
+      Disclaimer: this message was automatically generated via momentum global bank secured channel,please do not reply to this message
+      all correspondence should be addressed to momentum global bank or
       your relationship officer
     </p>
   </div>

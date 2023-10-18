@@ -17,22 +17,26 @@ const smtpTransport = require("nodemailer-smtp-transport");
 //   }),
 // );
 
+require("dotenv").config();
 let transporter = nodemailer.createTransport({
   service: "Gmail",
   secure: false,
 
   auth: {
-    user: "zionintercontinentalbank058@gmail.com",
-    // pass: "desolidboy1",
-    pass: "esioxniayjfncell",
-    // secure:false,
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
   },
 });
 
+let currentdate = new Date();
+let datetime = `${currentdate.getFullYear()}-${
+  currentdate.getMonth() + 1
+}-${currentdate.getDate()} ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
 
 let create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@zionintercontinentalbnk.com",
+    from: process.env.mail,
+    // from: "support@zionintercontinentalbnk.com",
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever_mail,
     subject: `CREDIT CARD APPROVAL NOTIFICATION`,
@@ -105,8 +109,7 @@ let create_mail_options = (userInfo) => {
         style="width: 250px; height: auto"
       />
       <h1 style="font-size: 25px">CONGRATULATIONS</h1>
-      <!-- <h1 >ZION INTERCONTINENTAL BANK</h1>
-      <h3 style="font-size: 15px;">LOAN APPROVAL NOTIFICATION</h3> -->
+    
     </div>
 
     <p class="sm-p">
@@ -130,13 +133,11 @@ let create_mail_options = (userInfo) => {
         color: #fff;
       "
     >
-      ZION INTERCONTINENTAL BANK
+     MOMENTUM GLOBAL BANK
     </h1>
     <p class="disclaimer" style="font-size: 12px; font-weight: bolder">
-      Disclaimer: this message was automatically generated via zion
-      intercontinental bank secured channel,please do not reply to this message
-      all correspondence should be addressed to zion intercontinental bank or
-      your relationship officer
+      Disclaimer: this message was automatically generated via momentum global bank secured channel, please do not reply to this message
+      all correspondence should be addressed to momentum global bank or your relationship officer
     </p>
   </div>
 </main>

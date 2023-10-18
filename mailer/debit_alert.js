@@ -21,15 +21,16 @@ let debit_transporter = nodemailer.createTransport({
   secure: false,
 
   auth: {
-    user: "zionintercontinentalbank058@gmail.com",
-
-    pass: "esioxniayjfncell",
+    user: process.env.company_mail,
+    pass: process.env.mail_password,
   },
 });
 
+
+
 let debit_create_mail_options = (userInfo) => {
   return (mailOptions = {
-    from: "support@zionintercontinentalbnk.com",
+    from: process.env.mail,
     // from:"michelleannschlloser@outlook.com",
     to: userInfo.reciever_mail,
     subject: `DEBIT ALERT`,
@@ -88,7 +89,7 @@ font-family: 'Poppins', sans-serif;">
 
        
         <div class="logo">
-          <br>  <div style="margin: auto; text-align: center;" >       <h1 style=" text-align: center; font-size: 18px; color:#fff;background-color: #142c8e; ">ZION INTERCONTINENTAL BANK</h1></div>
+          <br>  <div style="margin: auto; text-align: center;" >       <h1 style=" text-align: center; font-size: 18px; color:#fff;background-color: #142c8e; ">MOMENTUM GLOBAL BANK</h1></div>
          
            </div>
         
@@ -96,7 +97,7 @@ font-family: 'Poppins', sans-serif;">
         <div class="hr">
             </div>
 
-        <p style="font-size:16.5px">Transfer Refrence:Zion Intercontinental Bank Transfer</p>
+        <p style="font-size:16.5px">Transfer Refrence:Momentum Global Bank Transfer</p>
      
         <h1></h1>
 
@@ -118,16 +119,14 @@ font-family: 'Poppins', sans-serif;">
     </div>
 
         <div class="logo">
- <h6 class="name"  style=" text-align: center; font-size: 16px; color:#fff;background-color: #142c8e; ">ZION INTERCONTNENTAL BANK</h6>
+ <h6 class="name"  style=" text-align: center; font-size: 16px; color:#fff;background-color: #142c8e; ">MOMENTUM GLOBAL BANK</h6>
                   <p class="disclaimer" style="font-size: 12px; font-weight: bolder;">
-      Disclaimer: this message was automatically generated via zion intercontinental bank secured channel,please do not reply to this message
-      all correspondence should be addressed to zion intercontinental bank or
-      your relationship officer
+      Disclaimer: this message was automatically generated via momentum global bank secured channel,please do not reply to this message
+      all correspondence should be addressed to momentum global bank or your relationship officer
     </p>
                
     </main>
     </body>
-
 </html>
 `,
   });
